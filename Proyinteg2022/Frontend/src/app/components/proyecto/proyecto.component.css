@@ -1,0 +1,23 @@
+.row{
+    background: #0046ae;
+    padding: 20px;
+}
+div{
+    color: white;
+    padding-bottom: 30px;
+    
+}
+.contenedor{
+    width: auto;
+    
+    
+}
+.texto1, .imagen1, .texto2, .imagen2{
+    display: inline-block;
+    text-align: justify;
+    
+    }
+
+.img-multilideres{
+    box-shadow: 10px 10px 30px black;
+}

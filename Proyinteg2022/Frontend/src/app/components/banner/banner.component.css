@@ -1,0 +1,19 @@
+img{
+    width: 100%;
+}
+h1{
+    align-items: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 5px;
+    margin-top: 27px;
+}
+/*@media (min-width: 576px){
+    img{
+        width: 50%;
+        
+    }
+    h1{
+        ;
+    }
+}*/

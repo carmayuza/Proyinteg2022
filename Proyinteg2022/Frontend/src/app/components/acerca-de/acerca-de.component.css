@@ -7,6 +7,7 @@ div{
     text-align: center;
 }
 
+
 /*estilo foto perfil*/
 @media(min-width: 576px){
     #fotoperfil{
@@ -16,7 +17,7 @@ div{
         box-shadow: 3px 3px 3px whitesmoke;
         left: 3%;
         top:450px
-    }
+    }    
 }
 @media(max-width: 575px){
     #fotoperfil{

@@ -29,11 +29,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-/*import org.springframework.web.bind.annotation.RequestMapping;*/
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-/*@RequestMapping("/auth")*/
+@RequestMapping("/auth")
 
 @CrossOrigin(origins = {"https://frontendprueba-d6acc.web.app","http://localhost:4200"})
 public class AuthController {
@@ -48,7 +48,7 @@ public class AuthController {
     @Autowired
     JwtProvider jwtProvider;
     
-    @PostMapping("/auth/nuevo")
+    @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"),HttpStatus.BAD_REQUEST);
@@ -74,12 +74,12 @@ public class AuthController {
    }
     
     
-    @PostMapping("/auth/login")
+    @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
             if(bindingResult.hasErrors())
                 return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
             
-            Authentication authentication = (Authentication) authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
             loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
             
             SecurityContextHolder.getContext().setAuthentication(authentication);

@@ -42,39 +42,17 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
         return new BCryptPasswordEncoder();
     }
     
-    /*@Override
-    protected void configure(HttpSecurity http) throws Exception {
-
-
-        List<String> list1 = Arrays.asList(new String[]{"Authorization", "Cache-Control", "Content-Type"});
-        List<String> list2 = Arrays.asList(new String[]{"https://frontendprueba-d6acc.web.app/"});
-        List<String> list3 = Arrays.asList(new String[]{"GET", "POST", "PUT", "DELETE", "OPTIONS"});
-        List<String> list4 = Arrays.asList(new String[]{"Authorization"});
-
-        CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedHeaders(list1);
-        corsConfiguration.setAllowedOrigins(list2);
-        corsConfiguration.setAllowedMethods(list3);
-        corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setExposedHeaders(list4);
-
-        http.csrf().disable();
-        http.authorizeRequests().antMatchers("**").permitAll();
-        http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.cors().configurationSource(request -> corsConfiguration);
-        http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);*/
-
-    
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       http.cors().and().csrf().disable();
-       http.authorizeRequests().antMatchers("**").permitAll()
-                .anyRequest().authenticated();    
-       http.exceptionHandling().authenticationEntryPoint(jwtEntryPoint);
-       http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-       http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);           
+        http.cors().and().csrf().disable()
+                .authorizeRequests()
+                .antMatchers("**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);           
     }
 
     @Override

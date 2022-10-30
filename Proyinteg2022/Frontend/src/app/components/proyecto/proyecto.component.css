@@ -7,11 +7,11 @@ div{
     padding-bottom: 30px;
     
 }
-.contenedor{
+/*.contenedor{
     width: auto;
     
     
-}
+}*/
 .texto1, .imagen1, .texto2, .imagen2{
     display: inline-block;
     text-align: justify;

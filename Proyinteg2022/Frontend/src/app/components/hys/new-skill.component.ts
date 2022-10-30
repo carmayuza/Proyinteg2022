@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Skill } from 'src/app/model/skill';
 /*import { ImageService } from 'src/app/service/image.service';*/
 import { SkillService } from 'src/app/service/skill.service';
@@ -10,7 +10,6 @@ import { SkillService } from 'src/app/service/skill.service';
   styleUrls: ['./new-skill.component.css']
 })
 export class NewSkillComponent implements OnInit {
-  skill: Skill = null;
   nombre: string;
   porcentaje: number;
   /*img: string;*/
@@ -19,7 +18,7 @@ export class NewSkillComponent implements OnInit {
   constructor(
     private skillS: SkillService, 
     private router: Router,
-    private activatedRouter: ActivatedRoute, 
+     
     /*public imageService: ImageService*/ ){ }
 
   ngOnInit(): void {

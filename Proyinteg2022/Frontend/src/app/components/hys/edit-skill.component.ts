@@ -30,7 +30,7 @@ export class EditSkillComponent implements OnInit {
     )
   }
 
-  onUpdate(){
+  onUpdate(): void {
     const id = this.activatedRouter.snapshot.params['id'];
     /*this.skill.img = this.imageService.url*/
     this.skillS.update(id, this.skill).subscribe(

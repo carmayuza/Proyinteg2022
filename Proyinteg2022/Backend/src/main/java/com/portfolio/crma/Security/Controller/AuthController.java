@@ -62,7 +62,7 @@ public class AuthController {
         Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(),
                 nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
         
-        Set<Rol> roles = new HashSet<>();
+        /*Set<Rol> roles = new HashSet<>();
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
         
         if(nuevoUsuario.getRoles().contains("admin"))
@@ -70,8 +70,25 @@ public class AuthController {
         usuario.setRoles(roles);
         usuarioService.save(usuario);
             
-        return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);       
-   }
+        return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);*/
+        Set<String> rolesStr = nuevoUsuario.getRoles();
+        Set<Rol> roles = new HashSet<>();
+        for (String rol : rolesStr) {
+            switch (rol) {
+                case "admin":
+                    Rol rolAdmin = rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get();
+                    roles.add(rolAdmin);
+                    break;
+                default:
+                    Rol rolUser = rolService.getByRolNombre(RolNombre.ROLE_USER).get();
+                    roles.add(rolUser);
+            }
+        }
+        usuario.setRoles(roles);
+        usuarioService.save(usuario);
+        return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
+    }
+   
     
     
     @PostMapping("/login")

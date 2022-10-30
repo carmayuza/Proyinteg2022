@@ -1,4 +1,4 @@
-import { HttpClient, HttpEvent, HttpHandler, HttpRequest, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { TokenService } from "./token.service";
@@ -6,7 +6,7 @@ import { TokenService } from "./token.service";
 @Injectable({
     providedIn: 'root'
 })
-export class InterceptorService {
+export class InterceptorService implements HttpInterceptor {
     constructor(private tokenService: TokenService){}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
